@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build: ./docker
+    ports:
+      - 80:80
+    privileged: true
+    volumes:
+      - ${PROJECT_PATH}:/var/www/html
+      - node_modules:/var/www/html/node_modules
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      TZ: ${TZ}
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    ports:
+      - 8080:80
+
+volumes:
+  mysql:
+  node_modules:
