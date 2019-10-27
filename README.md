@@ -1,10 +1,10 @@
 # docker-laravel
 
-Docker環境のベース
+Laravel+Vue シンプルアプリケーション
 
 ## Start
 
-Dockerでapache,php7.3,mysql5.7の環境をつくる
+DockerでLaravel+VueのシンプルなWebアプリを実行する
 
 ### 設定ファイル
 ```bash
@@ -23,23 +23,13 @@ $ docker-compose exec web bash
 
 ## Laravelプロジェクト作成
 
-Laravelインストールまでを実行
+https://github.com/cretueusebiu/laravel-vue-spa
 
-### Laravelプロジェクト作成
+### Laravel設定
 ```bash
-$ laravel new myapp
+$ cp .env.example .env
 ```
 
-### Laravelサーバ起動
-```bash
-$ php artisan serve
-```
-
-http://192.168.99.100/
-
-http://192.168.99.100:8080/
-
-### laravelの.env修正
 ```
 APP_URL=http://192.168.99.100
 
@@ -53,15 +43,35 @@ DB_PASSWORD=docker
 MAIL_DRIVER=log
 ```
 
-### ログイン実装
-```bash
-$ composer require laravel/ui
-$ php artisan ui vue --auth
+### 準備
+
+```
+$ php artisan key:generate
+$ php artisan jwt:secret
+$ composer install
 $ php artisan migrate
+$ npm install
 ```
 
-### 必要なパッケージをインストールして実行
+### 起動
+
+#### Development
+```bash
+# build and watch
+$ npm run watch
+$ npm run watch-poll #Docker(Windows)
+
+# serve with hot reloading
+npm run hot
 ```
-$ npm install
-$ npm run dev
+
+#### Production
+```bash
+$ npm run production
 ```
+
+#### WEB
+http://192.168.99.100/
+
+#### phpMyAdmin
+http://192.168.99.100:8080/
