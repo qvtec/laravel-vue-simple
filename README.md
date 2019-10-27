@@ -46,9 +46,9 @@ MAIL_DRIVER=log
 ### 準備
 
 ```
+$ composer install
 $ php artisan key:generate
 $ php artisan jwt:secret
-$ composer install
 $ php artisan migrate
 $ npm install
 ```
