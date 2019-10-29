@@ -1,7 +1,12 @@
 <template>
-  <card :title="$t('home')">
-    {{ $t('you_are_logged_in') }}
-  </card>
+  <section>
+    <div class="alert alert-info" role="alert">
+      A simple light alert—check it out!
+    </div>
+    <card :title="$t('home')">
+      {{ $t('you_are_logged_in') }}
+    </card>
+  </section>
 </template>
 
 <script>
