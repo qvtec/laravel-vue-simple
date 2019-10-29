@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile
     ports:
-      - ${DB_NAME}:80
+      - ${WEB_PORT}:80
     privileged: true
     volumes:
       - ./docker/php/php.ini:/usr/local/etc/php/php.ini
