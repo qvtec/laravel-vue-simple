@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Notifications\VerifyEmail;
 use App\Notifications\ResetPassword;
@@ -48,6 +48,13 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     protected $appends = [
         'photo_url',
     ];
+
+    /**
+     * １対多リレーション todos
+     */
+    public function todos(){
+        return $this->hasMany('App\Models\Todo');
+    }
 
     /**
      * Get the profile photo URL attribute.
